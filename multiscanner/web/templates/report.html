@@ -259,11 +259,9 @@
       // Take some report data and put it at the top of the report
       var top_fields_list = [
           'filename',
+          'filemeta',
           'Scan Time',
           'Scan Metadata',
-          'MD5',
-          'SHA1',
-          'SHA256'
       ]
       top_fields_list.forEach(function(elem) {
         if (data.Report.hasOwnProperty(elem)) {

@@ -123,17 +123,17 @@ api_config = utils.parse_config(api_config_object)
 from multiscanner.distributed.celery_worker import multiscanner_celery, ssdeep_compare_celery
 from multiscanner.analytics.ssdeep_analytics import SSDeepAnalytic
 
-db = database.Database(config=api_config.get('Database'))
+db = database.Database(config=api_config.get('database'))
 # To run under Apache, we need to set up the DB outside of __main__
 # Sleep and retry until database connection is successful
 try:
     # wait this many seconds between tries
-    db_sleep_time = int(api_config_object.get('Database', 'retry_time'))
+    db_sleep_time = int(api_config_object.get('database', 'retry_time'))
 except (configparser.NoSectionError, configparser.NoOptionError):
     db_sleep_time = database.Database.DEFAULTCONF['retry_time']
 try:
     # max number of times to retry
-    db_num_retries = int(api_config_object.get('Database', 'retry_num'))
+    db_num_retries = int(api_config_object.get('database', 'retry_num'))
 except (configparser.NoSectionError, configparser.NoOptionError):
     db_num_retries = database.Database.DEFAULTCONF['retry_num']
 
@@ -404,8 +404,13 @@ def import_task(file_):
     except ValueError:
         raise InvalidScanTimeFormatError()
 
+    try:
+        sha256_ = report.get['filemeta']['sha256']
+    except KeyError:
+        raise KeyError()
+
     task_id = db.add_task(
-        sample_id=report['SHA256'],
+        sample_id=sha256_,
         task_status='Complete',
         timestamp=report['Scan Time'],
     )
@@ -614,7 +619,7 @@ def _add_links(report_dict):
 
     if matches_dict:
         links_dict = {}
-        # k=SHA256, v=ssdeep.compare result
+        # k=sha256, v=ssdeep.compare result
         for k, v in matches_dict.items():
             t_id = db.exists(k)
             if t_id:
@@ -650,7 +655,7 @@ def files_get_task(task_id):
         return jsonify(report_dict)
 
     # okay, we have report dict; get sha256
-    sha256 = report_dict.get('Report', {}).get('SHA256')
+    sha256 = report_dict.get('Report', {}).get('filemeta', {}).get('sha256')
     if sha256:
         return files_get_sha256_helper(
                 sha256,

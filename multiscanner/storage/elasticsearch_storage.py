@@ -17,12 +17,8 @@ from multiscanner import MS_WD
 from multiscanner.storage import storage
 
 METADATA_FIELDS = [
-    'MD5',
-    'SHA1',
-    'SHA256',
-    'ssdeep',
+    'filemeta'
     'tags',
-    'Metadata',
 ]
 
 ES_MAX = 2147483647
@@ -165,7 +161,7 @@ class ElasticSearchStorage(storage.Storage):
         for filename in report:
             report[filename]['filename'] = filename
             try:
-                sample_id = report[filename]['SHA256']
+                sample_id = report[filename]['filemeta']['sha256']
             except KeyError:
                 sample_id = uuid4()
             # Store metadata with the sample, not the report

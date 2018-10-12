@@ -14,7 +14,7 @@ __license__ = "MPL 2.0"
 
 TYPE = "Metadata"
 NAME = "impfuzzy"
-REQUIRES = ["libmagic"]
+REQUIRES = ["filemeta"]
 DEFAULTCONF = {
     'ENABLED': True,
 }
@@ -30,12 +30,14 @@ def check(conf=DEFAULTCONF):
 
 def scan(filelist, conf=DEFAULTCONF):
     results = []
-    libmagicresults, libmagicmeta = REQUIRES[0]
+    filemeta_results, filemeta_meta = REQUIRES[0]
 
-    for fname, libmagicresult in libmagicresults:
+    for fname, filemeta_result in filemeta_results:
+        filetype = filemeta_result.get('filetype', '')
+
         if fname not in filelist:
             print("DEBUG: File not in filelist")
-        if not libmagicresult.startswith('PE32'):
+        if not filetype.startswith('PE32'):
             continue
         impfuzzy_hash = pyimpfuzzy.get_impfuzzy(fname)
         chunksize, chunk, double_chunk = impfuzzy_hash.split(':')

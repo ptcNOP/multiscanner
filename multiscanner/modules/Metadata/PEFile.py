@@ -30,7 +30,7 @@ from multiscanner.config import PY3
 
 TYPE = "Metadata"
 NAME = "pefile"
-REQUIRES = ["libmagic"]
+REQUIRES = ["filemeta"]
 DEFAULTCONF = {
     'ENABLED': True
 }
@@ -48,12 +48,13 @@ def check(conf=DEFAULTCONF):
 
 def scan(filelist, conf=DEFAULTCONF):
     results = []
-    libmagicresults, libmagicmeta = REQUIRES[0]
+    filemeta_results, filemeta_meta = REQUIRES[0]
 
-    for fname, libmagicresult in libmagicresults:
+    for fname, filemeta_result in filemeta_results:
+        filetype = filemeta_result.get('filetype', '')
         if fname not in filelist:
             print("DEBUG: File not in filelist")
-        if not libmagicresult.startswith('PE32'):
+        if not filetype.startswith('PE32'):
             continue
         result = {}
         pe = pefile.PE(fname)

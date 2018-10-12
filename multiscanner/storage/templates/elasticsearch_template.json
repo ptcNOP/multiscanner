@@ -30,7 +30,7 @@
                     }
                 },
                 "filename": {"type": "text"},
-                "ssdeep": {
+                "filemeta.ssdeep": {
                     "properties": {
                         "chunksize": {"type": "integer"},
                         "chunk": {
