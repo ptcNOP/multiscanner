@@ -13,7 +13,7 @@ __author__ = "Drew Bonasera"
 __credits__ = ["Wesley Shields", "Mike Goffin"]
 __license__ = "MPL 2.0"
 
-TYPE = "Metadata"
+TYPE = "metadata"
 NAME = "pdfinfo"
 REQUIRES = ["filemeta"]
 DEFAULTCONF = {

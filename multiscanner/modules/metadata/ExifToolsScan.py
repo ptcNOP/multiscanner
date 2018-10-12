@@ -15,7 +15,7 @@ subprocess.list2cmdline = list2cmdline
 __author__ = "Drew Bonasera"
 __license__ = "MPL 2.0"
 
-TYPE = "Metadata"
+TYPE = "metadata"
 NAME = "ExifTool"
 # These are overwritten by the config file
 HOST = ("MultiScanner", 22, "User")

@@ -24,7 +24,7 @@ from multiscanner import CONFIG
 __authors__ = "Patrick Copeland"
 __license__ = "MPL 2.0"
 
-TYPE = "MachineLearning"
+TYPE = "machine_learning"
 NAME = "EndgameEmber"
 REQUIRES = ['libmagic']
 DEFAULTCONF = {

@@ -12,7 +12,7 @@ from multiscanner.config import CONFIG
 __author__ = "Drew Bonasera"
 __license__ = "MPL 2.0"
 
-TYPE = "Database"
+TYPE = "database"
 NAME = "NSRL"
 
 REQUIRES = ["SHA1", "MD5"]

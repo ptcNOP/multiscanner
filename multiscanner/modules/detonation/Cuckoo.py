@@ -10,7 +10,7 @@ from multiscanner.common.utils import basename
 __author__ = "Drew Bonasera"
 __license__ = "MPL 2.0"
 
-TYPE = "Detonation"
+TYPE = "detonation"
 NAME = "Cuckoo Sandbox"
 DEFAULTCONF = {
     "ENABLED": False,

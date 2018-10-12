@@ -15,7 +15,7 @@ import subprocess
 __author__ = "Alec Hussey"
 __license__ = "MPL 2.0"
 
-TYPE = "Metadata"
+TYPE = "metadata"
 NAME = "UAD"
 
 DEFAULTCONF = {

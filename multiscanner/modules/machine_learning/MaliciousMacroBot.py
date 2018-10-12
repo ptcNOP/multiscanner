@@ -6,7 +6,7 @@ from __future__ import division, absolute_import, with_statement, print_function
 __authors__ = "Austin West"
 __license__ = "MPL 2.0"
 
-TYPE = "MachineLearning"
+TYPE = "machine_learning"
 NAME = "MaliciousMacroBot"
 REQUIRES = ['libmagic']
 DEFAULTCONF = {

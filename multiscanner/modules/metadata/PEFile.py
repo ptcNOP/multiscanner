@@ -28,7 +28,7 @@ from time import strftime, localtime
 from multiscanner.common.utils import convert_encoding
 from multiscanner.config import PY3
 
-TYPE = "Metadata"
+TYPE = "metadata"
 NAME = "pefile"
 REQUIRES = ["filemeta"]
 DEFAULTCONF = {

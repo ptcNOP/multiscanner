@@ -15,7 +15,7 @@ subprocess.list2cmdline = list2cmdline
 __author__ = "Drew Bonasera"
 __license__ = "MPL 2.0"
 
-TYPE = "Metadata"
+TYPE = "metadata"
 NAME = "TrID"
 # These are overwritten by the config file
 # Hostname, port, username

@@ -12,7 +12,7 @@ __author__ = "Patrick Copeland"
 __credits__ = ["JPCERT/CC"]
 __license__ = "MPL 2.0"
 
-TYPE = "Metadata"
+TYPE = "metadata"
 NAME = "impfuzzy"
 REQUIRES = ["filemeta"]
 DEFAULTCONF = {

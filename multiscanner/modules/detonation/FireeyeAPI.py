@@ -11,7 +11,7 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 __author__ = "Michael Limiero"
 __license__ = "MPL 2.0"
 
-TYPE = "Detonation"
+TYPE = "detonation"
 NAME = "FireEyeAPI"
 DEFAULTCONF = {
     "API URL": "https://fireeye/wsapis/v1.1.0",

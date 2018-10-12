@@ -11,7 +11,7 @@ from boltons.iterutils import remap
 __author__ = 'Austin West'
 __license__ = 'MPL 2.0'
 
-TYPE = 'Detonation'
+TYPE = 'detonation'
 NAME = 'VxStream Sandbox'
 DEFAULTCONF = {
     'ENABLED': False,

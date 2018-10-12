@@ -51,7 +51,7 @@ if not config_object.has_section('celery') or not os.path.isfile(configfile):
 config = utils.parse_config(config_object)
 api_config = config.get('api')
 worker_config = config.get('celery')
-db_config = config.get('Database')
+db_config = config.get('database')
 
 storage_config_object = configparser.SafeConfigParser()
 storage_config_object.optionxform = str

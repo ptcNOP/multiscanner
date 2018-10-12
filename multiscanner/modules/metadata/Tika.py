@@ -6,7 +6,7 @@ from __future__ import division, absolute_import, with_statement, print_function
 __authors__ = "Drew Bonasera"
 __license__ = "MPL 2.0"
 
-TYPE = "Metadata"
+TYPE = "metadata"
 NAME = "Tika"
 REMOVEENTRY = ["X-TIKA:parse_time_millis"]
 DEFAULTCONF = {

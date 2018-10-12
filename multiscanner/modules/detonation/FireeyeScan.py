@@ -9,7 +9,7 @@ import shutil
 __author__ = "Drew Bonasera"
 __license__ = "MPL 2.0"
 
-TYPE = "Detonation"
+TYPE = "detonation"
 NAME = "FireEye"
 DEFAULTCONF = {
     "fireeye images": ["win7-sp1", "win7x64-sp1", "winxp-sp2", "winxp-sp3"],

@@ -7,7 +7,7 @@ import mimetypes
 __author__ = 'Austin West'
 __license__ = 'MPL 2.0'
 
-TYPE = 'Metadata'
+TYPE = 'metadata'
 NAME = 'fileextensions'
 REQUIRES = ['libmagic', 'Tika', 'TrID', 'vtsearch']
 DEFAULTCONF = {

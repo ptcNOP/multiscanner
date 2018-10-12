@@ -13,7 +13,7 @@ from multiscanner.common.utils import parseDir
 __authors__ = "Nick Beede, Drew Bonasera"
 __license__ = "MPL 2.0"
 
-TYPE = "Signature"
+TYPE = "signature"
 NAME = "Yara"
 DEFAULTCONF = {
     "ruledir": os.path.join(os.path.split(CONFIG)[0], "etc", "yarasigs"),

@@ -26,7 +26,7 @@ __author__ = "Patrick Copeland"
 __credits__ = ["knowmalware"]
 __license__ = "MPL 2.0"
 
-TYPE = "Metadata"
+TYPE = "metadata"
 NAME = "pehash"
 REQUIRES = ["filemeta"]
 DEFAULTCONF = {

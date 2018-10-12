@@ -15,7 +15,7 @@ __author__ = "Patrick Coplenad"
 __credits__ = ["Mike Goffin"]
 __license__ = "MPL 2.0"
 
-TYPE = "Metadata"
+TYPE = "metadata"
 NAME = "officemeta"
 REQUIRES = ["filemeta"]
 DEFAULTCONF = {

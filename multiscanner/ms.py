@@ -38,7 +38,7 @@ from multiscanner.storage import storage
 # The default configuration options for the main script
 DEFAULTCONF = {
     "copyfilesto": False,
-    "group-types": ["Antivirus"],
+    "group-types": ["antivirus"],
     "storage-config": CONFIG.replace('config.ini', 'storage.ini'),
     "api-config": CONFIG.replace('config.ini', 'api_config.ini'),
     "web-config": CONFIG.replace('config.ini', 'web_config.ini'),

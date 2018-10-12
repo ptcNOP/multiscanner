@@ -8,7 +8,7 @@ import subprocess
 __author__ = 'Emmanuelle Vargas-Gonzalez'
 __license__ = 'MPL 2.0'
 
-TYPE = 'Metadata'
+TYPE = 'metadata'
 NAME = 'floss'
 DEFAULTCONF = {
     'ENABLED': False,
