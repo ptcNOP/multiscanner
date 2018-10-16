@@ -5,6 +5,7 @@ import json
 import logging
 import os
 import re
+from boltons.iterutils import remap
 from datetime import datetime
 from uuid import uuid4
 
@@ -308,6 +309,7 @@ class ElasticSearchStorage(storage.Storage):
             del result_report['_source']['doc_type']
             result = result_report['_source'].copy()
             result.update(result_sample['_source'])
+            result = remap(result, lambda p, k, v: not str(k).startswith('_'))
             return result
         except Exception as e:
             print(e)

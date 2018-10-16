@@ -93,9 +93,9 @@ class SSDeepAnalytic:
 
         for new_ssdeep_hit in records_list:
             new_ssdeep_hit_src = new_ssdeep_hit.get('_source')
-            chunksize = new_ssdeep_hit_src.get('ssdeep').get('chunksize')
-            chunk = new_ssdeep_hit_src.get('ssdeep').get('chunk')
-            double_chunk = new_ssdeep_hit_src.get('ssdeep').get('double_chunk')
+            chunksize = new_ssdeep_hit_src.get('ssdeep').get('_chunksize')
+            chunk = new_ssdeep_hit_src.get('ssdeep').get('_chunk')
+            double_chunk = new_ssdeep_hit_src.get('ssdeep').get('_double_chunk')
             new_sha256 = new_ssdeep_hit_src.get('filemeta').get('sha256')
 
             # build new query for docs that match our optimizations
@@ -107,7 +107,7 @@ class SSDeepAnalytic:
                         'must': [
                             {
                                 'terms': {
-                                    'ssdeep.chunksize': [chunksize, chunksize / 2, chunksize * 2]
+                                    'ssdeep._chunksize': [chunksize, chunksize / 2, chunksize * 2]
                                 }
                             },
                             {
@@ -115,14 +115,14 @@ class SSDeepAnalytic:
                                     'should': [
                                         {
                                             'match': {
-                                                'ssdeep.chunk': {
+                                                'ssdeep._chunk': {
                                                     'query': chunk
                                                 }
                                             }
                                         },
                                         {
                                             'match': {
-                                                'ssdeep.double_chunk': {
+                                                'ssdeep._double_chunk': {
                                                     'query': double_chunk
                                                 }
                                             }

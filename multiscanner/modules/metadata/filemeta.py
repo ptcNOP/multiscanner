@@ -58,9 +58,9 @@ def scan(filelist):
                 chunksize = int(chunksize)
                 ssdeep_doc = {
                     'ssdeep_hash': ssdeep_hash,
-                    'chunksize': chunksize,
-                    'chunk': chunk,
-                    'double_chunk': double_chunk,
+                    '_chunksize': chunksize,
+                    '_chunk': chunk,
+                    '_double_chunk': double_chunk,
                     'analyzed': 'false',
                     'matches': {},
                 }

@@ -44,9 +44,9 @@ def scan(filelist, conf=DEFAULTCONF):
         chunksize = int(chunksize)
         doc = {
             'impfuzzy_hash': impfuzzy_hash,
-            'chunksize': chunksize,
-            'chunk': chunk,
-            'double_chunk': double_chunk,
+            '_chunksize': chunksize,
+            '_chunk': chunk,
+            '_double_chunk': double_chunk,
             'analyzed': 'false',
             'matches': {},
         }

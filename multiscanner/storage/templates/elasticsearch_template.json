@@ -32,12 +32,12 @@
                 "filename": {"type": "text"},
                 "filemeta.ssdeep": {
                     "properties": {
-                        "chunksize": {"type": "integer"},
-                        "chunk": {
+                        "_chunksize": {"type": "integer"},
+                        "_chunk": {
                             "analyzer": "ssdeep_analyzer",
                             "type": "text"
                         },
-                        "double_chunk": {
+                        "_double_chunk": {
                             "analyzer": "ssdeep_analyzer",
                             "type": "text"
                         },
