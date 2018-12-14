@@ -215,20 +215,9 @@ class ElasticSearchStorage(storage.Storage):
                                               body=report[filename],
                                               pipeline='dedot', routing=sample_id)
             except (TransportError, UnicodeEncodeError) as e:
-                # If fail, index empty doc instead
                 print('Failed to index that report!\n{}'.format(e))
-                report_body_fail = {
-                    'doc_type': {
-                        'name': 'report',
-                        'parent': sample_id,
-                    },
-                    'ERROR': 'Failed to index the full report in Elasticsearch',
-                }
-                if 'Scan Time' in report[filename]:
-                    report_body_fail['Scan Time'] = report[filename]['Scan Time']
-                report_result = self.es.index(index=self.index, doc_type=self.doc_type,
-                                              body=report_body_fail,
-                                              pipeline='dedot', routing=sample_id)
+                print('Report:\n{}'.format(report))
+                raise
 
             report_id = report_result.get('_id')
             sample['report_id'] = report_id

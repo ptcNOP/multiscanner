@@ -187,8 +187,11 @@ def multiscanner_celery(file_, original_filename, task_id, file_hash, metadata,
     del results[file_]
 
     # Save the reports to storage
-    storage_ids = storage_handler.store(results, wait=False)
-    storage_handler.close()
+    try:
+        storage_ids = storage_handler.store(results, wait=False)
+        storage_handler.close()
+    except Exception as e:
+        raise
 
     # Only need to raise ValueError here,
     # Further cleanup will be handled by the on_failure method
