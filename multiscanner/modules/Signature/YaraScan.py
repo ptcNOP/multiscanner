@@ -20,6 +20,7 @@ DEFAULTCONF = {
     "fileextensions": [".yar", ".yara", ".sig"],
     "ignore-tags": ["TLPRED"],
     "includes": False,
+    "debug": False,
     "ENABLED": True
 }
 
@@ -41,6 +42,7 @@ def check(conf=DEFAULTCONF):
 def scan(filelist, conf=DEFAULTCONF):
     ruleDir = conf["ruledir"]
     extlist = conf["fileextensions"]
+    debug = conf["debug"]
     includes = 'includes' in conf and conf['includes']
 
     ruleset = {}
@@ -56,6 +58,7 @@ def scan(filelist, conf=DEFAULTCONF):
     goodtogo = False
     i = 0
     yararules = None
+    bad_rules = []
     while not goodtogo:
         try:
             yararules = yara.compile(filepaths=ruleset, includes=includes)
@@ -63,10 +66,16 @@ def scan(filelist, conf=DEFAULTCONF):
         except yara.SyntaxError as e:
             bad_file = os.path.abspath(str(e).split('(')[0])
             if bad_file in ruleset:
-                del ruleset[bad_file]
-                print('WARNING: Yara', e)
+                bad_rule = ruleset.pop(bad_file)
+                bad_rules.append(str(e))
+                if debug:
+                    print(
+                        '[WARNING] Yara: {err}; removing rule file'.format(err=e)
+                    )
             else:
-                print('ERROR Yara: Invalid rule in', bad_file, 'but we are unable to remove it from our list. Aborting')
+                print(
+                    '[ERROR] Yara: Invalid rule in', bad_file,
+                    'but we are unable to remove it from our list. Aborting')
                 print(e)
                 return None
 
@@ -110,7 +119,9 @@ def scan(filelist, conf=DEFAULTCONF):
     metadata = {}
     rulelist = list(ruleset)
     rulelist.sort()
+    bad_rules.sort()
     metadata["Name"] = NAME
     metadata["Type"] = TYPE
     metadata["Rules"] = rulelist
+    metadata["bad_rules"] = bad_rules
     return (matches, metadata)
