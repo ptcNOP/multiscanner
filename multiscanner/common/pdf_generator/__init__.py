@@ -19,7 +19,7 @@ def create_pdf_document(DIR, report):
         report: A JSON object.
 
     '''
-    with open(os.path.join(os.path.split(DIR)[0], 'pdf_config.json')) as data_file:
+    with open(os.path.join(os.path.split(DIR)[0], 'etc', 'pdf_config.json')) as data_file:
         pdf_components = json.load(data_file)
 
     gen_pdf = generic_pdf.GenericPDF(pdf_components)

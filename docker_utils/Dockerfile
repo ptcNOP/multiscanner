@@ -76,7 +76,7 @@ RUN apk add --no-cache \
 
 COPY . /opt/multiscanner
 COPY ./docker_utils/*.ini /opt/multiscanner/
-COPY ./etc/pdf_config.json /opt/multiscanner/
+COPY ./etc/pdf_config.json /opt/etc/multiscanner/
 COPY ./etc/ember_model_2017.txt /opt/multiscanner/etc/ember/
 
 WORKDIR /opt/multiscanner
