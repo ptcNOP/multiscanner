@@ -71,6 +71,8 @@ RUN apk add --no-cache \
   # install ms dependencies
   && cd /opt/multiscanner \
   && pip3 install --upgrade pip \
+  # mmbot is difficult
+  && sed -i '/mmbot/d' ./requirements.txt \
   && pip3 install -r requirements.txt \
   && pip3 install gevent \
   # clean up

@@ -1,0 +1,47 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+Flask-Testing = "*"
+flake8 = "*"
+mock = "*"
+pathlib = "*"
+pre-commit = "*"
+pytest = "*"
+selenium = "*"
+
+[packages]
+Flask = "*"
+Flask-Cors = "*"
+SQLAlchemy = "*"
+SQLAlchemy-Utils = "*"
+bitstring = "*"
+boltons = "*"
+celery = "*"
+click = "*"
+configparser = "*"
+elasticsearch = "<7.0.0,>=6.0.0"
+elasticsearch-curator = "*"
+future = "*"
+mmbot = {git = "https://github.com/egaus/MaliciousMacroBot.git"}
+paramiko = "*"
+pefile = "*"
+pehash = {git = "https://github.com/knowmalware/pehash.git"}
+psycopg2-binary = "*"
+pyClamd = "*"
+pyimpfuzzy = "*"
+pymongo = "*"
+python-magic = "*"
+rarfile = "*"
+reportlab = "*"
+requests = "*"
+setuptools = "*"
+six = "*"
+sqlalchemy-datatables = "==1.2.0"
+ssdeep = "*"
+stix2 = "*"
+tika = "*"
+tqdm = "*"
+yara-python = {git = "https://github.com/VirusTotal/yara-python/"}

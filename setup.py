@@ -24,7 +24,9 @@ def get_requirements(filename, dep_links_only=False):
     requirements = []
     with open(filename) as f:
         for l in f.readlines():
-            if dep_links_only is False and REQ_REGEX.match(l):
+            if '-i' in l:
+                continue
+            elif dep_links_only is False and REQ_REGEX.match(l):
                 requirements.append(l.strip())
             elif dep_links_only is True and DEPS_LINKS_REGEX.match(l):
                 requirements.append(l.strip())
@@ -60,8 +62,7 @@ setup(
         ],
     },
     extras_require={
-        'dev': get_requirements('requirements-test.txt') + get_requirements('requirements-dev.txt'),
-        'test': get_requirements('requirements-test.txt'),
+        'dev': get_requirements('requirements-dev.txt'),
     },
     dependency_links=get_requirements('requirements.txt', dep_links_only=True),
     classifiers=[
