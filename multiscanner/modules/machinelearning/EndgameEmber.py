@@ -27,7 +27,7 @@ __license__ = "MPL 2.0"
 
 TYPE = "MachineLearning"
 NAME = "EndgameEmber"
-REQUIRES = ['libmagic']
+REQUIRES = ['filemeta']
 DEFAULTCONF = {
     'ENABLED': False,
     'path-to-model': os.path.join(os.path.split(CONFIG)[0], 'etc', 'ember', 'ember_model_2017.txt'),
@@ -72,25 +72,20 @@ def check(conf=DEFAULTCONF):
 
 def scan(filelist, conf=DEFAULTCONF):
     results = []
+    filemeta_results, _ = REQUIRES[0]
 
-    for fname in filelist:
-        # Ensure libmagic returns results
-        if REQUIRES[0] is not None:
-            # only run the analytic if it is an Office document
-            file_type = _get_libmagicresults(REQUIRES[0][0], fname)
-            if file_type.startswith('PE32'):
-                with open(fname, 'rb') as fh:
-                    ember_result = ember.predict_sample(LGBM_MODEL, fh.read())
-                results.append(
-                    (fname, {'Prediction': ember_result})
-                )
+    for fname, filemeta_result in filemeta_results:
+        if fname not in filelist:
+            logger.debug("File not in filelist: {}".format(fname))
+        if not filemeta_result.get('filetype', '').startswith('PE32'):
+            continue
+        with open(fname, 'rb') as fh:
+            ember_result = ember.predict_sample(LGBM_MODEL, fh.read())
+        results.append(
+            (fname, {'Prediction': ember_result})
+        )
 
     metadata = {}
     metadata["Name"] = NAME
     metadata["Type"] = TYPE
     return (results, metadata)
-
-
-def _get_libmagicresults(results, fname):
-    libmagicdict = dict(results)
-    return libmagicdict.get(fname)

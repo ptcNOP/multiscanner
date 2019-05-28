@@ -11,7 +11,7 @@ __license__ = 'MPL 2.0'
 
 TYPE = 'Metadata'
 NAME = 'fileextensions'
-REQUIRES = ['libmagic', 'Tika', 'TrID', 'vtsearch']
+REQUIRES = ['filemeta', 'Tika', 'TrID', 'vtsearch']
 DEFAULTCONF = {
     'ENABLED': True
 }
@@ -78,9 +78,11 @@ def scan(filelist, conf=DEFAULTCONF):
 
 
 def _get_libmagicresults(results, fname):
-    libmagicdict = dict(results)
+    filemeta = dict(results)
+    filetype = filemeta.get(fname, {}).get('filetype', '')
+
     return _convert_libmagic_to_extension(
-        libmagicdict.get(fname)
+        filetype
     )
 
 
@@ -134,85 +136,85 @@ def _get_vtresults(results, fname):
     return result
 
 
-def _convert_libmagic_to_extension(libmagicresult):
+def _convert_libmagic_to_extension(filetype):
     # Do some detction on the libmmagic results and return
     # a best guess of extension
 
-    if 'Microsoft Word 2007+' in libmagicresult:
+    if 'Microsoft Word 2007+' in filetype:
         return ['.docx']
-    elif 'Microsoft Word' in libmagicresult:
+    elif 'Microsoft Word' in filetype:
         return ['.doc']
-    elif 'Microsoft PowerPoint 2007+' in libmagicresult:
+    elif 'Microsoft PowerPoint 2007+' in filetype:
         return ['.pptx']
-    elif 'Microsoft PowerPoint' in libmagicresult:
+    elif 'Microsoft PowerPoint' in filetype:
         return ['.ppt']
-    elif 'Rich Text Format data' in libmagicresult:
+    elif 'Rich Text Format data' in filetype:
         return ['.rtf']
-    elif 'Microsoft Excel 2007+' in libmagicresult:
+    elif 'Microsoft Excel 2007+' in filetype:
         return ['.xlsx']
-    elif 'Microsoft Excel' in libmagicresult:
+    elif 'Microsoft Excel' in filetype:
         return ['.xls']
-    elif 'GIF image data' in libmagicresult:
+    elif 'GIF image data' in filetype:
         return ['.gif']
-    elif 'JPEG image data' in libmagicresult:
+    elif 'JPEG image data' in filetype:
         return ['.jpg']
-    elif 'PDF document' in libmagicresult:
+    elif 'PDF document' in filetype:
         return ['.pdf']
-    elif 'PNG image data' in libmagicresult:
+    elif 'PNG image data' in filetype:
         return ['.png']
-    elif 'PE32 executable (GUI)' in libmagicresult:
+    elif 'PE32 executable (GUI)' in filetype:
         return ['.exe']
-    elif 'PE32+ executable (GUI)' in libmagicresult:
+    elif 'PE32+ executable (GUI)' in filetype:
         return ['.exe']
-    elif 'PE32 executable (DLL)' in libmagicresult:
+    elif 'PE32 executable (DLL)' in filetype:
         return ['.dll']
-    elif 'PE32+ executable (DLL)' in libmagicresult:
+    elif 'PE32+ executable (DLL)' in filetype:
         return ['.dll']
-    elif 'XML' in libmagicresult:
+    elif 'XML' in filetype:
         return ['.xml']
-    elif 'ms-windows metafont .wmf' in libmagicresult:
+    elif 'ms-windows metafont .wmf' in filetype:
         return ['.wmf']
-    elif 'Windows Enhanced Metafile (EMF) image data' in libmagicresult:
+    elif 'Windows Enhanced Metafile (EMF) image data' in filetype:
         return ['.mf']
-    elif 'TIFF image data' in libmagicresult:
+    elif 'TIFF image data' in filetype:
         return ['.tif']
-    elif 'PC bitmap' in libmagicresult:
+    elif 'PC bitmap' in filetype:
         return ['.bmp']
-    elif '7-zip archive data' in libmagicresult:
+    elif '7-zip archive data' in filetype:
         return ['.7z']
-    elif 'bzip2 compressed data' in libmagicresult:
+    elif 'bzip2 compressed data' in filetype:
         return ['.bz2']
-    elif 'gzip compressed data' in libmagicresult:
+    elif 'gzip compressed data' in filetype:
         return ['.gz']
-    elif 'POSIX tar archive' in libmagicresult:
+    elif 'POSIX tar archive' in filetype:
         return ['.tar']
-    elif 'RAR archive data' in libmagicresult:
+    elif 'RAR archive data' in filetype:
         return ['.rar']
-    elif 'Java archive data' in libmagicresult:
+    elif 'Java archive data' in filetype:
         return ['.jar']
-    elif 'MS-DOS executable' in libmagicresult:
+    elif 'MS-DOS executable' in filetype:
         return ['.exe']
-    elif 'DOS executable' in libmagicresult:
+    elif 'DOS executable' in filetype:
         return ['.com']
-    elif 'COM executable' in libmagicresult:
+    elif 'COM executable' in filetype:
         return ['.com']
-    elif 'UTF-8 Unicode text' in libmagicresult:
+    elif 'UTF-8 Unicode text' in filetype:
         return ['.txt']
-    elif 'UTF-8 Unicode (with BOM) text' in libmagicresult:
+    elif 'UTF-8 Unicode (with BOM) text' in filetype:
         return ['.txt']
-    elif 'ISO-8859 text' in libmagicresult:
+    elif 'ISO-8859 text' in filetype:
         return ['.txt']
-    elif 'ASCII text' in libmagicresult:
+    elif 'ASCII text' in filetype:
         return ['.txt']
-    elif 'MS Windows shortcut' in libmagicresult:
+    elif 'MS Windows shortcut' in filetype:
         return ['.lnk']
-    elif 'Microsoft Cabinet archive data' in libmagicresult:
+    elif 'Microsoft Cabinet archive data' in filetype:
         return ['.cab']
-    elif 'PHP script' in libmagicresult:
+    elif 'PHP script' in filetype:
         return ['.ph']
-    elif 'empty' in libmagicresult:
+    elif 'empty' in filetype:
         return ['.empty']
-    elif 'HTML document' in libmagicresult:
+    elif 'HTML document' in filetype:
         return ['.html']
     else:
         return []

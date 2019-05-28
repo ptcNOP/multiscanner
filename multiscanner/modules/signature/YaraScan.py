@@ -16,7 +16,7 @@ __authors__ = "Nick Beede, Drew Bonasera"
 __license__ = "MPL 2.0"
 
 TYPE = "Signature"
-NAME = "Yara"
+NAME = "yara"
 DEFAULTCONF = {
     "ruledir": os.path.join(os.path.split(CONFIG)[0], "etc", "yarasigs"),
     "fileextensions": [".yar", ".yara", ".sig"],

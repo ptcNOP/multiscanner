@@ -16,7 +16,7 @@ __license__ = "MPL 2.0"
 
 TYPE = "Metadata"
 NAME = "pdfinfo"
-REQUIRES = ["libmagic"]
+REQUIRES = ["filemeta"]
 DEFAULTCONF = {
     'ENABLED': True,
     'fast': False
@@ -35,9 +35,10 @@ def check(conf=DEFAULTCONF):
 
 def scan(filelist, conf=DEFAULTCONF):
     results = []
-    libmagicresults, libmagicmeta = REQUIRES[0]
-    for fname, libmagicresult in libmagicresults:
-        if libmagicresult.startswith('PDF document'):
+    filemeta_results, _ = REQUIRES[0]
+
+    for fname, filemeta_result in filemeta_results:
+        if filemeta_result.get('filetype', '').startswith('PDF document'):
             ret = None
             try:
                 handle = open(fname, 'rb')
